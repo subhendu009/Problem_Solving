@@ -117,7 +117,7 @@ Extra Space : O(n)
 
 ListNode* reorderList(ListNode* head)
 {
-    if((nullptr == head) || (nullptr == head->next))
+    if(nullptr == head)
     {
         return head;
     }
