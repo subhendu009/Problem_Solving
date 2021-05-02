@@ -37,6 +37,7 @@ lists[i] is sorted in ascending order.
 The sum of lists[i].length won't exceed 10^4.
 
 Leetcode : https://leetcode.com/problems/merge-k-sorted-lists/
+https://www.youtube.com/watch?v=kpCesr9VXDA
 
 */
 // METHOD 1 : Without using any extra space.
