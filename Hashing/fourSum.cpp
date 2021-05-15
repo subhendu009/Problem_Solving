@@ -36,8 +36,6 @@ std::vector<std::vector<int>> fourSum(std::vector<int>& numList, int target)
     // Sort the given number list.
     std::sort(numList.begin(), numList.end());
 
-    std::vector<int> intList(4);
-
     int numListLength = numList.size();
 
     // Outer Loop.
@@ -66,6 +64,7 @@ std::vector<std::vector<int>> fourSum(std::vector<int>& numList, int target)
                 // we have found a pair here.
                 else
                 {
+                    std::vector<int> intList(4);
                     intList[0] = numList[i];  
                     intList[1] = numList[j];
                     intList[2] = numList[left];
