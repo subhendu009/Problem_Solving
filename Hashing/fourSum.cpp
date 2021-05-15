@@ -27,7 +27,7 @@ https://www.youtube.com/watch?v=4ggF3tXIAp0&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx
 
 // Time Complexity : O(n ^ 3)
 // Extra Space : O(n) in worst case, for sorting.
-// Con : The given array will be modified as we are sorting that array.
+// Drawback : The given array will be modified as we are sorting that array.
 
 std::vector<std::vector<int>> fourSum(std::vector<int>& numList, int target) 
 {
