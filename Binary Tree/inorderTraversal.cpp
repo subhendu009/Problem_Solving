@@ -58,18 +58,18 @@ std::vector<int> inorderTraversal(TreeNode* root)
 	
 	std::stack<TreeNode *> nodeStack;
 	
-  // Exit Condition : if root node is NULL and the stack is empty.
+	// Exit Condition : if root node is NULL and the stack is empty.
 	while(root || (false == nodeStack.empty()))
 	{
-    // Keep on pushing left nodes to stack till we get a NULL node.
+		// Keep on pushing left nodes to stack till we get a NULL node.
 		while(root)
 		{
 			nodeStack.push(root);
 			root = root->left;
 		}
 
-    // Get the current top of stack and add its value to numberList.
-    // root should point to its right child now.
+		// Get the current top of stack and add its value to numberList.
+		// root should point to its right child now.
 		root = nodeStack.top();
 		nodeStack.pop();
 
