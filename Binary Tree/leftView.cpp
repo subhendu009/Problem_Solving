@@ -70,14 +70,7 @@ void preOrderTraversal(TreeNode *root, std::vector<int> &numberList,
 	    numberList.push_back(root->data);
 	    levelList.push_back(true);
 	}
-	else
-	{
-		if(false == levelList[level])
-		{
-			numberList.push_back(root->data);
-		}
-	}
-
+	
 	preOrderTraversal(root->left, numberList, levelList, level + 1);
 	preOrderTraversal(root->right, numberList, levelList, level + 1);
 }
