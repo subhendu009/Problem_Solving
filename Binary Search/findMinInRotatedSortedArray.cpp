@@ -84,3 +84,38 @@ int findMin(const std::vector<int>& numList)
 
 	return numList[midIndex];
 }
+
+// Extension of the previous problem.
+// Find number of times a sorted array has been rotated towards right.
+int findNumberOfRotation(const std::vector<int>& numList)
+{
+    int lowIndex = 0;
+    int highIndex = numList.size() - 1;
+    int midIndex = 0;
+
+    while (lowIndex <= highIndex)
+    {
+        midIndex = lowIndex + (highIndex - lowIndex) / 2;
+
+        if ((midIndex < highIndex) && (numList[midIndex] > numList[midIndex + 1]))
+        {
+            return numList.size() - (midIndex + 1);
+        }
+
+        if ((lowIndex < midIndex) && (numList[midIndex] < numList[midIndex - 1]))
+        {
+            return numList.size() - midIndex;
+        }
+
+        if (numList[midIndex] < numList[highIndex])
+        {
+            highIndex = midIndex - 1;
+        }
+        else
+        {
+            lowIndex = midIndex + 1;
+        }
+    }
+
+    return midIndex;
+}
