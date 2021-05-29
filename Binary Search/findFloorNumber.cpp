@@ -28,11 +28,11 @@ using std::endl;
 
 int findFloor(long long int numList[], int arrSize, long long int key)
 {
-    if(!numList)
-    {
-        return -1;
-    }
-    
+	if(!numList)
+	{
+	return -1;
+	}
+
 	int lowIndex = 0;
 	int highIndex = arrSize - 1;
 
@@ -59,7 +59,3 @@ int findFloor(long long int numList[], int arrSize, long long int key)
 
 	return floorIndex;
 }
-
-
-
-
