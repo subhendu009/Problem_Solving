@@ -36,8 +36,8 @@ struct ListNode
   ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-// Time Complexity : O(n log n) where n is the length of thr given list.
-// Extra Space : O(1)
+// Time Complexity : O(n log n)
+// Extra Space : O(log n) where n is the length of thr given list.
 
 // Helper method to merge two sorted linked lists.
 ListNode* mergeTwoLists(ListNode *firstList, ListNode *secondList)
