@@ -32,6 +32,9 @@ struct TreeNode
 	TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// Time Complexity : O(n) where n is the total number of nodes in the tree.
+// Extra Space : O(h) where h is the height of the tree.
+
 // Recursive Solution.
 void _inorderTraversal(TreeNode* root, std::vector<int> &valVector) 
 {
