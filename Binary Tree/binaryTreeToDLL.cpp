@@ -51,6 +51,7 @@ struct Node
     }
 };
 
+/// ITERATIVE SOLUTION ////////////////////////////////////////////////////////////////////////////
 TreeNode* binaryTreeToDLL(TreeNode* root)
 {
     std::stack<TreeNode*> nodeStack;
@@ -92,4 +93,51 @@ TreeNode* binaryTreeToDLL(TreeNode* root)
     }
 
     return dllHead;
+}
+
+/// RECURSIVE SOLUTION ////////////////////////////////////////////////
+void inorderTraversal(TreeNode* root, 
+                      TreeNode*& previousNode,
+                      TreeNode*& doublyLinkedListHead)
+{
+  if (!root)
+  {
+      return;
+  }
+
+  inorderTraversal(root->left, previousNode, doublyLinkedListHead);
+
+  // Process current node here
+  TreeNode *rightNode = root->right;
+
+  if (doublyLinkedListHead)
+  {
+      previousNode->right = root;
+      root->left = previousNode;
+  }
+  else
+  {
+      root->left = nullptr;
+      root->right = nullptr;
+      doublyLinkedListHead = root;
+  }
+
+  previousNode = root;
+
+  inorderTraversal(rightNode, previousNode, doublyLinkedListHead);
+}
+
+TreeNode* binaryTreeToDLL(TreeNode* root)
+{
+  TreeNode* doublyLinkedListHead = nullptr;
+  TreeNode* previousNode = nullptr;
+  
+  inorderTraversal(root, previousNode, doublyLinkedListHead);
+
+  if (previousNode)
+  {
+      previousNode->right = nullptr;
+  }
+
+  return doublyLinkedListHead;
 }
