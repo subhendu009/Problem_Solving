@@ -44,8 +44,8 @@ Leetcode : https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matr
 int getNegativeNumbersFromRow(const std::vector<int> &numList)
 {
     int lowIndex = 0;
-    int highIndex = numList.size() - 1;
-    int firstNegativeNumberIndex = -1;
+    int firstNegativeNumberIndex = numList.size();
+    int highIndex = firstNegativeNumberIndex - 1;
 
     while(lowIndex <= highIndex)
     {
@@ -60,11 +60,6 @@ int getNegativeNumbersFromRow(const std::vector<int> &numList)
         {
             lowIndex = midIndex + 1;
         }
-    }
-
-    if(-1 == firstNegativeNumberIndex)
-    {
-        return 0;
     }
 
     return numList.size() - firstNegativeNumberIndex;
