@@ -39,7 +39,7 @@ int minJumpToReachEnd(const std::vector<int> &stepsList)
 {
 	int listLength = stepsList.size();
 
-    // if empty list, return -1.
+    	// if empty list, return -1.
 	if(listLength == 0)
 	{
 		return -1;
@@ -61,27 +61,27 @@ int minJumpToReachEnd(const std::vector<int> &stepsList)
 	int remainingSteps = stepsList[0];
 	int maxSteps = stepsList[0];
 
-    // Traverse the list starting from index 1.
+    	// Traverse the list starting from index 1.
 	for(int index = 1; index < (listLength - 1); ++index)
 	{
 		--remainingSteps;
 		--maxSteps;
 
-        // Update maxSteps
+        	// Update maxSteps
 		if(maxSteps < stepsList[index])
 		{
 			maxSteps = stepsList[index];
 		}
 
-        // If currentMaxStepsPossible is 0, we can't reach the end.
-        // Hence return -1.
+        	// If currentMaxStepsPossible is 0, we can't reach the end.
+        	// Hence return -1.
 		if(0 == maxSteps)
 		{
 			return -1;
 		}
 
-        // If there is no more remaining steps for the previous jump,
-        // update remainingSteps and minJumps.
+        	// If there is no more remaining steps for the previous jump,
+        	// update remainingSteps and minJumps.
 		if(0 == remainingSteps)
 		{
 			++minJumps;
