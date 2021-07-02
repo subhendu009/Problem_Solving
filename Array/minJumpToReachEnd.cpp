@@ -35,48 +35,59 @@ Leetcode : https://leetcode.com/problems/jump-game-ii/
 // Time Complexity : O(n) where n is the length of the given array.
 // Extra Space : O(1)
 
-int jump(const std::vector<int>& numList) 
+int minJumpToReachEnd(const std::vector<int> &stepsList)
 {
-    // Edge cases.
-    // 1. The first element is 0 OR
-    // 2. The list has only 1 element.
-    if((0 == numList[0]) || (1 == numList.size()))
-    {
-        return 0;
-    }
+	int listLength = stepsList.size();
 
-    int remainingSteps = numList[0];
-    int currentMaxStepsPossible = numList[0];
-    int minimumJumps = 1;
-    int lastIndex = numList.size() - 1;
+    // if empty list, return -1.
+	if(listLength == 0)
+	{
+		return -1;
+	}
+
+	// If list contains only 1 element, return 0.
+	if(listLength == 1)
+	{
+	    return 0;
+	}
+
+	// If list contains more than 1 element and the first element is 0, return -1.
+	if(stepsList[0] == 0)
+	{
+	    return -1;
+	}
+
+	int minJumps = 1;
+	int remainingSteps = stepsList[0];
+	int maxSteps = stepsList[0];
 
     // Traverse the list starting from index 1.
-    for(int index = 1; index < lastIndex; ++index)
-    {
-        --remainingSteps;
-        --currentMaxStepsPossible;
+	for(int index = 1; index < (listLength - 1); ++index)
+	{
+		--remainingSteps;
+		--maxSteps;
 
-        // Update maxJumps
-        if(currentMaxStepsPossible < numList[index])
-        {
-            currentMaxStepsPossible = numList[index];
-        }
+        // Update maxSteps
+		if(maxSteps < stepsList[index])
+		{
+			maxSteps = stepsList[index];
+		}
 
         // If currentMaxStepsPossible is 0, we can't reach the end.
         // Hence return -1.
-        if(0 == currentMaxStepsPossible)
-        {
-            return -1;
-        }
+		if(0 == maxSteps)
+		{
+			return -1;
+		}
 
         // If there is no more remaining steps for the previous jump,
-        // update remainingPlaces and minimumJumps.
-        if(0 == remainingSteps)
-        {
-            remainingSteps = currentMaxStepsPossible;
-            ++minimumJumps;
-        }
-    }
+        // update remainingSteps and minJumps.
+		if(0 == remainingSteps)
+		{
+			++minJumps;
+			remainingSteps = maxSteps;
+		}
+	}
 
-    return minimumJumps;
+	return minJumps;
 }
