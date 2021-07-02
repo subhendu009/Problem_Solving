@@ -71,61 +71,50 @@ ListNode* reverseList(ListNode *head)
 }
 
 
-ListNode* reverseKGroup(ListNode* head, int k) 
+ListNode* reverseKGroup(ListNode *head, int k)
 {
-    // Validate k. Return for k < 2.
     if(k < 2)
     {
         return head;
     }
 
     ListNode *resList = nullptr;
-    ListNode *currentLastNode = nullptr;
+    ListNode *lastNode = nullptr;
 
-    // Traverse the given list.
     while(head)
     {
-        ListNode *currentGroupHead = head;
-        ListNode *currentGroupLastNode = nullptr;
+        ListNode *startNode = head;
 
-        int count = 0;
+        int count = 1;
 
         // Reach kth node.
         for(; head && (count < k); ++count)
         {
-            currentGroupLastNode = head;
             head = head->next;
         }
 
-        // If we get NULL before reaching kth node, just append the last part of the list.
-        // else reverse the part and add to resList.
-        if(count == k)
+        // If head is NULL, just append the remaining part and return.
+        if(!head)
         {
-            // At first, mark the last node of this group as NULL.
-            currentGroupLastNode->next = nullptr;
+            lastNode->next = startNode;
+            break;
+        }
 
-            // Initialize resList if not done already.
-            if(!resList)
-            {
-                resList = reverseList(currentGroupHead);
-                // Special case : k = length of the list.
-                // If head is NULL, we are not going to append any other part.
-                // Hence, don't change currentLastNode.
-                if(head)
-                {
-                    currentLastNode = currentGroupHead;
-                }
-            }
-            else
-            {
-                currentLastNode->next = reverseList(currentGroupHead);
-                currentLastNode = currentGroupHead; 
-            }
+        ListNode *nextNode = head->next;
+        head->next = nullptr;
+
+        // Reverse the group and append to the lastNode.
+        if(resList)
+        {
+            lastNode->next = reverseList(startNode);
         }
         else
         {
-            currentLastNode->next = currentGroupHead;
+            resList = reverseList(startNode);
         }
+
+        lastNode = startNode;
+        head = nextNode;
     }
 
     return resList;
