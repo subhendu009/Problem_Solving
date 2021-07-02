@@ -29,6 +29,12 @@ Constraints:
 Leetcode : https://leetcode.com/problems/jump-game-ii/
 */
 
+//Clarifying Question : Can we always reach the end or not ? What should we return if we can not reach the end ?
+// Here, we are returning -1.
+
+// Time Complexity : O(n) where n is the length of the given array.
+// Extra Space : O(1)
+
 int jump(const std::vector<int>& numList) 
 {
     // Edge cases.
@@ -39,28 +45,35 @@ int jump(const std::vector<int>& numList)
         return 0;
     }
 
-    int remainingPlaces = numList[0];
-    int currentMaxJumpsPossible = numList[0];
+    int remainingSteps = numList[0];
+    int currentMaxStepsPossible = numList[0];
     int minimumJumps = 1;
     int lastIndex = numList.size() - 1;
 
     // Traverse the list starting from index 1.
     for(int index = 1; index < lastIndex; ++index)
     {
-        --remainingPlaces;
-        --currentMaxJumpsPossible;
+        --remainingSteps;
+        --currentMaxStepsPossible;
 
         // Update maxJumps
-        if(currentMaxJumpsPossible < numList[index])
+        if(currentMaxStepsPossible < numList[index])
         {
-            currentMaxJumpsPossible = numList[index];
+            currentMaxStepsPossible = numList[index];
+        }
+
+        // If currentMaxStepsPossible is 0, we can't reach the end.
+        // Hence return -1.
+        if(0 == currentMaxStepsPossible)
+        {
+            return -1;
         }
 
         // If there is no more remaining steps for the previous jump,
         // update remainingPlaces and minimumJumps.
-        if(0 == remainingPlaces)
+        if(0 == remainingSteps)
         {
-            remainingPlaces = currentMaxJumpsPossible;
+            remainingSteps = currentMaxStepsPossible;
             ++minimumJumps;
         }
     }
